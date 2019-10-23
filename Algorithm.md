@@ -29,3 +29,26 @@
 4. 3
 
 5. 4
+
+
+
+#### 递推
+
+
+
+
+
+
+
+## Exp.
+
+- Delete node in node list
+
+- ```c++
+      void deleteNode(ListNode* node) {
+          node->val = node->next->val;
+          node->next = node->next->next;
+      }
+  ```
+
+- 
