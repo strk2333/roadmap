@@ -3,7 +3,8 @@
 ## Chapter 1 计算机网络和因特网
 
 ### 1.1 什么是因特网
-1. 从因特网软硬件构成描述
+#### 1.1.1 从因特网软硬件构成描述
+
 - 互联了全世界计算设备的网络. 这些设备称为**主机** (host) 或**端系统** (end system). 
 - 端系统通过**通信链路** (communication link) 和**分组交换机** (packet switch) 连接到一起.
 - 通信链路
@@ -24,6 +25,20 @@
 - 协议
   - 控制信息的接受发送
   - TCP/IP (Transmission Control Protocol, Internet Protocol)
-- 因特网标准由因特网工程任务组 (Internet Engineering Task Force, IETF) 研发.
+- 因特网标准由因特网工程任务组 (Internet Engineering Task Force, IETF) 研发. IETF的标准文档称为请求评论 (Request For Comment, RFC). 
 
-2. 从为分布式应用提供服务的联网基础设施描述
+
+
+#### 1.1.2 从为分布式应用提供服务的联网基础设施描述
+
+- 分布式应用程序: 涉及多个相互交换数据的端系统的应用程序
+
+- 套接字接口(socket interface)
+
+  - 规定了端系统之间数据传递的方式
+  - 发送程序必须遵循的规则的集合
+
+
+
+#### 1.1.3 协议
+
