@@ -45,6 +45,11 @@
   element diff: 
 
   - 对于同一层级的一组子节点，通过唯一id区分。
+  
+- 刷新闪烁
+
+  - 拆分组件
+  - 使用了 uuid 的问题。使用 uuid() 会获取不同的key，造成不必要的更新
 
 ## 个人实践
 
@@ -377,3 +382,80 @@ npm install -g xxx
 yarn global add xxx
 ```
 
+
+
+
+
+# Antd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+表单处理
+
+- rules
+  - pattern
+  - required
+
+
+
+
+
+
+
+
+
+
+
+
+
+Redux && Sagas
+
+```js
+ // 阻塞
+ yield all([
+          put.resolve({
+            type: 'getTaxList',
+            payload,
+          }),
+          put.resolve({
+            type: 'getCaseList',
+            payload,
+          }),
+        ])
+```
+
+
+
+
+
+umi-request
+
+- 发送字符串参数时会自动转number
+
+
+
+
+
+Umi
+
+  loading: *loading*.effects['pcInfoSkill/fetch'],

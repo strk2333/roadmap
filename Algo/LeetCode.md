@@ -2,6 +2,25 @@
 
 ### C++
 
+#### string
+
+```
+string s;
+s[0];
+string s1();  // si = ""
+string s2("Hello");  // s2 = "Hello"
+string s3(4, 'K');  // s3 = "KKKK"
+string s4("12345", 1, 3);  //s4 = "234"，即 "12345" 的从下标 1 开始，长度为 3 的子串
+
+string s1 = "this is ok";
+string s2 = s1.substr(2, 4);  // s2 = "is i" 第二个参数为长度
+s2 = s1.substr(2);  // s2 = "is is ok"
+```
+
+
+
+
+
 #### sort
 
 ```c++
@@ -79,6 +98,14 @@ res.insert(res.begin(),cur->val); // 插入到头部
 
 vector.insert(pos,n,elem); // 在pos位置插入n个elem数据，无返回值
 res.insert(res.end(),temp.begin(),temp.end()); // 合并两个vector
+
+vector<vector<int> >vv(3, vector<int>(4)); // 二维初始化
+vv.push_back(vector<int>()); // 添加行
+
+res.clear(); // 清空
+
+
+
 ```
 
 
@@ -145,6 +172,16 @@ delete []value; // 一定要进行内存释放，否则会造成内存泄露
 int * value = new int[m][3][4]; // 指针方式 只有第一维可以是变量，其他几维必须都是常量，否则会报错
 delete []value; // 一定要进行内存释放，否则会造成内存泄露
 ```
+
+
+
+hash
+
+```
+unordered_map<int, int> mp;
+```
+
+
 
 
 
