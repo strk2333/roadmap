@@ -77,3 +77,17 @@ Regex
 CSS
 
 - display: block; width; margin: 0 auto;
+
+
+
+需求
+
+- 多行文本省略
+
+  - CSS 
+
+                  display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+
+  - JS substring

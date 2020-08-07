@@ -50,6 +50,8 @@
 
   - 拆分组件
   - 使用了 uuid 的问题。使用 uuid() 会获取不同的key，造成不必要的更新
+  
+  
 
 ## 个人实践
 
@@ -384,9 +386,13 @@ yarn global add xxx
 
 
 
+## 性能测试优化
 
 
-# Antd
+
+
+
+# Antd Dva Umi
 
 
 

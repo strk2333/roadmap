@@ -77,6 +77,19 @@
 
 
 
+文本选择
+
+- 禁止 user-select: none
+
+- 颜色 ::selection
+
+  ```
+  ::selection {
+      background:#d3d3d3; 
+      color:#555;
+  }
+  ```
+
 
 
 
