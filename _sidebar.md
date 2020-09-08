@@ -7,7 +7,7 @@
 * 框架领域
   * [安卓](/frame/android)
   * [Angular](/frame/angular)
-  * [Flutter](/frame/)
+  * [Flutter](/frame/flutter)
   * [前端](/frame/front)
   * [小程序](/frame/mini-program)
   * [React](/frame/react)
