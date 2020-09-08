@@ -1,44 +1,24 @@
 # Haskell
 
-## Install
-
-Recommand haskell stack
-
-https://docs.haskellstack.org/
+## Brief
 
 
 
 
 
-## Basic Command
 
-- Installation
 
-  `curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh`
 
-- cargo
 
-  `cargo build`	compile
 
-  `cargo run`	compile & run
 
-  `cargo check`	check code with no executable file
+## Package Manager
 
-  `cargo build --release` compile with optimizations
 
-- Mirror
 
-  ```
-  # vi C:\Users\Administrator\.cargo\config
-  [source.crates-io]
-  registry="https://github.com/rust-lang/crates.io-index"
-  replace-with ='ustc'
-  [source.ustc]
-  registry = "git://mirrors.ustc.edu.cn/crates.io-index"
-  
-  ```
 
-  
+
+
 
 
 
@@ -46,14 +26,43 @@ https://docs.haskellstack.org/
 
 ## Hello World
 
-```rust
-// create file main.rs
-// edit file
-fn main() {
-    println!("hello, world!");
-}
-// run `rustc main.rs`
+### Install
+
+Recommand haskell stack
+
+https://docs.haskellstack.org/en/stable/README/#quick-start-guide
+
+
+
+```shell
+
+# create new project
+stack new my-project
+cd my-project
+stack setup
+stack build
+stack exec my-project-exe
+
+# upgrade
+stack upgrade
+
+# REPL
+stack ghci
 ```
+
+
+
+```haskell
+// change prompt
+:set prompt "ghci>"
+
+// add module
+:module + Data.Ratio
+```
+
+
+
+
 
 
 
@@ -71,7 +80,15 @@ fn main() {
 
 
 
+
+
+
+
 ## Logic Statement
+
+
+
+
 
 
 
@@ -79,7 +96,23 @@ fn main() {
 
 
 
-## Object Oriented Features
+
+
+
+
+## Object Oriented
+
+
+
+
+
+
+
+## Features
+
+
+
+
 
 
 
@@ -87,7 +120,15 @@ fn main() {
 
 
 
+
+
+
+
 ## Network
+
+
+
+
 
 
 
@@ -95,7 +136,11 @@ fn main() {
 
 
 
-## Package Manager
+
+
+
+
+## Best Trial
 
 
 
@@ -103,6 +148,13 @@ fn main() {
 
 
 
-Reference:
+## Commands
+
+
+
+
+
+## Reference
 
 - https://rwh.readthedocs.io/en/latest/chp
+- https://docs.haskellstack.org/
