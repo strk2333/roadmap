@@ -4,18 +4,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 // 停止Docker
 sudo service docker stop

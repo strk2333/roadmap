@@ -1,0 +1,10 @@
+button.docsify-copy-code-button {
+  font-size: 12px;
+  background-color: #333;
+  border-bottom-left-radius: 4px;
+}
+
+aside.sidebar .search input:focus {
+  border: 1px solid transparent;
+  box-shadow: none;
+}

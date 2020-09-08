@@ -66,63 +66,35 @@
 
 ## lang
 
-### Brief
+- Brief
 
+- Package Manager
 
+- Hello World
 
-### Package Manager
+- Basic Data Types
 
+- High Level Data Types
 
+- Logic Statement
 
-### Hello World
+- Function
 
+- Object Oriented
 
+- Features
 
-### Basic Data Types
+- Async
 
+- Network
 
+- UI
 
-### High Level Data Types
+- Best Trial
 
+- Commands
 
-
-### Logic Statement
-
-
-
-### Function
-
-
-
-### Object Oriented
-
-
-
-### Features
-
-
-
-### Async
-
-
-
-### Network
-
-
-
-### UI
-
-
-
-### Best Trial
-
-
-
-### Commands
-
-
-
-### Reference
+- Reference
 
 
 

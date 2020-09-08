@@ -1,6 +1,6 @@
-## weapp
+# 小程序
 
----
+## weapp
 
 
 
@@ -10,9 +10,7 @@
 
 ## Taro
 
----
-
-Tips
+### Tips
 
 - 使用Taro组件，而不是html标签
 - div -> View

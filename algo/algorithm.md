@@ -1,14 +1,8 @@
-## Algorithm
+# 算法
 
-### 排序
+## 排序
 
-#### 概览
-
-- 
-
-#### 详细
-
-##### 插入排序 （Insertion Sort）
+### 插入排序 （Insertion Sort）
 
 - 概括：插入到合适位置
 
@@ -33,7 +27,7 @@
 
   ### 
 
-##### 选择排序 （Selection Sort）
+### 选择排序 （Selection Sort）
 
 - 概括：选择未排序部分最值与未排序部分第一个元素交换
 
@@ -59,7 +53,7 @@
 
 
 
-##### 冒泡排序 （Bubble Sort）
+### 冒泡排序 （Bubble Sort）
 
 - 概括：从起点交换相邻元素位置，将最值冒泡到终点
 
@@ -84,7 +78,7 @@
 
 
 
-##### 希尔排序 （Shell Sort）（extends 插入排序）（缩小增量排序）
+### 希尔排序 （Shell Sort）（extends 插入排序）（缩小增量排序）
 
 - 概括：进行多次间隔递减的分组插入排序
 
@@ -108,7 +102,7 @@
 
 
 
-##### 归并排序 （Merge Sort）
+### 归并排序 （Merge Sort）
 
 - 概括：先使每个子序列有序，再将两两有序表合并成一个有序表（2-路归并） 
 
@@ -134,7 +128,7 @@
 
 
 
-##### 快速排序 （Quick Sort）（分治）
+### 快速排序 （Quick Sort）（分治）
 
 - 概括：通过一趟排序将待排记录分隔成独立的两部分（ 从right找小于pivot的值，放在left，从left找大于pivot的值，放在right ），其中一部分记录的关键字均比另一部分的关键字小，则可分别对这两部分记录继续进行排序，以达到整个序列有序。
 
@@ -158,7 +152,7 @@
 
 
 
-##### 堆排序 （Heap Sort）
+### 堆排序 （Heap Sort）
 
 - 概括：堆积是一个近似完全二叉树的结构，并同时满足堆积的性质：即子结点的键值或索引总是小于（ 或者大于 ）它的父节点（ 小顶堆，大顶堆 ）。将待排序序列构造成一个大顶堆，此时，整个序列的最大值就是堆顶的根节点。将其与末尾元素进行交换，此时末尾就为最大值。然后将剩余n-1个元素重新构造成一个堆，这样会得到n个元素的次大值。如此反复执行，便能得到一个有序序列了。
 
@@ -182,7 +176,7 @@
 
 
 
-##### 计数排序 （Counting Sort）
+### 计数排序 （Counting Sort）
 
 - 概括：将输入的数据值转化为键存储在额外开辟的根据**数据范围**生成的数组空间中，统计出现次数。然后输出结果。
 
@@ -207,7 +201,7 @@
 
 
 
-##### 桶排序 （Bucket Sort）（计数排序的升级版）
+### 桶排序 （Bucket Sort）（计数排序的升级版）
 
 - 概括：假设输入数据服从均匀分布，将数据用**映射函数**映射到数量有限的有序的桶里，每个桶再分别排序（有可能再使用别的排序算法或是以递归方式继续使用桶排序）
 
@@ -232,7 +226,7 @@
 
 
 
-##### 基数排序 （Radix Sort）
+### 基数排序 （Radix Sort）
 
 - 概括：基数排序是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前。
 
@@ -262,9 +256,9 @@
 
 
 
-### 树
+## 树
 
-#### 二叉树
+### 二叉树
 
 二叉搜索树上所花费的时间与这棵树的高度成正比
 
@@ -326,13 +320,13 @@
 
 
 
-### BFS ( Breadth First Search ) & DFS ( Depth First Search )
+## BFS ( Breadth First Search ) & DFS ( Depth First Search )
 
 https://www.cnblogs.com/wzl19981116/p/9397203.html
 
 
 
-#### BFS
+### BFS
 
 - ​	模板
 
@@ -364,8 +358,8 @@ https://www.cnblogs.com/wzl19981116/p/9397203.html
 
 
 
-### 动态规划
-#### 组成
+## 动态规划
+### 组成
 1. 确定状态  
 
    - 两个意识 (去掉 a<sub>k</sub>后, n-a<sub>k</sub>也是最优解)
@@ -397,7 +391,7 @@ https://www.cnblogs.com/wzl19981116/p/9397203.html
 
 
 
-#### 递推
+### 递推
 
 
 
@@ -407,28 +401,29 @@ https://www.cnblogs.com/wzl19981116/p/9397203.html
 
 ## Exp.
 
-- Delete node in node list
+### Delete node in node list
 
-- ```c++
-      void deleteNode(ListNode* node) {
-          node->val = node->next->val;
-          node->next = node->next->next;
-      }
-  ```
+```c++
+void deleteNode(ListNode* node) {
+	node->val = node->next->val;
+	node->next = node->next->next;
+}
+```
 
-- 
-
-
-
-
-
-递归
+  
 
 
 
 
 
-Method
+
+### 递归
+
+
+
+
+
+### Method
 
 - 双指针
 
@@ -438,7 +433,7 @@ Method
 
 
 
-Tips
+### Tips
 
 - 二分法技巧
   - https://blog.csdn.net/CCSGTC/article/details/80586181
