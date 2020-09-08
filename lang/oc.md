@@ -1,12 +1,10 @@
-# 苹果系
+# OC
 
-## OC
-
-### 基本
+## 基本
 
 
 
-### 消息传递
+## 消息传递
 
 ```objc
 obj.method(argument); // c++
@@ -19,7 +17,7 @@ obj.method(argument); // c++
 
 
 
-### 数据类型
+## 数据类型
 
 ```objc
 NSString		字符串
@@ -32,7 +30,7 @@ BOOL 				布尔型
 
 
 
-### 打印日志
+## 打印日志
 
 ```objc
 NSlog(@"");
@@ -42,7 +40,7 @@ NSlog(@"");
 
 
 
-### 字符串
+## 字符串
 
 ```objc
 NSString* myString = @"My String\n"; // 常量值创建NSString对象
@@ -55,7 +53,7 @@ encoding:NSASCIIStringEncoding];
 
 
 
-### 数组
+## 数组
 
 ```objc
 NSMutableArray *aMutableArray = [[NSMutableArray alloc]init];
@@ -68,7 +66,7 @@ initWithObjects:@"firstObject",nil];
 
 
 
-### 类
+## 类
 
 ```
 // 类定义
@@ -117,7 +115,7 @@ MyObject * my = [MyObject new];
 
 
 
-属性 ( Properties )
+## 属性 ( Properties )
 
 ```
 @property （参数1，参数2，参数3）类型名字；
@@ -136,7 +134,7 @@ self.myString = @"Test";
 
 
 
-### 类别 ( Categories )
+## 类别 ( Categories )
 
 ```
 @interface MyClass(customAdditions)
@@ -155,7 +153,7 @@ self.myString = @"Test";
 
 
 
-### int 字符串转换
+## int 字符串转换
 
 ```
  1，字符串拼接
@@ -187,7 +185,7 @@ NSString *stringFloat = [NSString stringWithFormat:@"%f",intString];
 
 
 
-### IOS
+## IOS
 
 
 

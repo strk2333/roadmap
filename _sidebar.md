@@ -14,7 +14,7 @@
   * [ROR](/frame/ror)
   * [Vue](/frame/vue)
 * 语言
-  * [苹果系](/lang/apple)
+  * [OC](/lang/oc)
   * [Dart](/lang/dart)
   * [Haskell](/lang/haskell)
   * [HTML & CSS](/lang/html-css)
