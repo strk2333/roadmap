@@ -112,3 +112,70 @@ docker pull portainer/portainer
 docker run -d --name portainerUI -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer
 http://192.168.2.119:9000
 ```
+
+
+
+
+
+
+
+```
+# 依赖
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+
+# 安装
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+# :安装特定版本
+yum list docker-ce --showduplicates | sort -r
+sudo yum install docker-ce-<VERSION_STRING> docker-ce-cli-<VERSION_STRING> containerd.io
+
+# 启动
+sudo systemctl start docker
+
+# hello world
+sudo docker run hello-world
+
+docker stats
+
+docker run -it ubuntu /bin/bash # -i 交互式操作 -t 终端
+exit
+
+docker ps -a # 查看所有容器
+docker start b750bbbcfd88 # 启动已停止容器
+docker run -itd --name ubuntu-test ubuntu /bin/bash # 后台运行 -d 运行模式
+docker stop <容器 ID>
+docker restart <容器 ID>
+
+# 进入容器
+docker attach # 退出会停止容器
+docker exec 
+docker exec -it 243c32535da7 /bin/bash # 退出不会停止容器
+
+# 导出容器
+docker export 1e560fca3906 > ubuntu.tar
+
+# 导入快照
+cat docker/ubuntu.tar | docker import - test/ubuntu:v1
+
+# 删除容器
+docker rm -f 1e560fca3906
+
+# 镜像列表
+docker images
+
+# 获取镜像
+docker pull ubuntu
+
+# 查找镜像
+docker search httpd
+
+# 删除镜像
+docker rmi hello-world
+
+docker build
+docker tag
+```
+

@@ -21,21 +21,13 @@
     window.$docsify = {
       themeColor: '#812990',
       loadNavbar: true,
+      loadSidebar: false,
       autoHeader: true,
       search: {
         placeholder: '搜索',
         noData: '找不到结果',
       },
       auto2top: true,
-    }
-    
-    window.$docsify.loadSidebar = window.location.hash === '#/';
-    window.onhashchange = function () {
-      if (window.location.hash === '#/') {
-        window.$docsify.loadSidebar = '_navbar.md';
-      } else {
-        window.$docsify.loadSidebar = false;
-      }
     }
   </script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>

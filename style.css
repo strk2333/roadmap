@@ -8,3 +8,39 @@ aside.sidebar .search input:focus {
   border: 1px solid transparent;
   box-shadow: none;
 }
+
+nav.app-nav>ul>li>ul {
+  padding: 0;
+}
+
+nav.app-nav>ul>li>ul>li {
+  margin: 0;
+  padding: 0;
+}
+
+nav.app-nav>ul>li>ul>li>a {
+  margin: 0;
+  padding: 8px;
+  text-align: center;
+  border-bottom: solid 1px transparent;
+  border-image: linear-gradient(to right, #fff, #fff, #ddd, #fff, #fff);
+  border-image-slice: 10;
+}
+
+.app-nav li ul a.active {
+  border-bottom: solid 1px transparent;
+  border-image: linear-gradient(to right, #fff, #fff, #812990, #fff, #fff);
+  border-image-slice: 10;
+}
+
+/* nav.app-nav>ul>li>ul>li>a::before {
+  display: block;
+  width: 5px;
+  height: 5px;
+  background-color: #812990;
+  content: '',
+} */
+
+nav.app-nav>ul>li>ul>li:last-child {
+  border: none;
+}

@@ -465,3 +465,15 @@ umi-request
 Umi
 
   loading: *loading*.effects['pcInfoSkill/fetch'],
+
+
+
+
+
+
+
+react改端口
+
+yarn start --port 8082
+
+ adb -s emulator-5554 reverse tcp:8082 tcp:8082
