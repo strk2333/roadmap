@@ -50,3 +50,4 @@
   * [Mongodb](/tools/mongodb)
   * [Vim](/tools/vim)
   * [VSCode](/tools/vscode)
+  * [IDEA](/tools/idea)

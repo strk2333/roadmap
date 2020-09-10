@@ -41,6 +41,6 @@ nav.app-nav>ul>li>ul>li>a {
   content: '',
 } */
 
-nav.app-nav>ul>li>ul>li:last-child {
+nav.app-nav>ul>li>ul>li:last-child>a {
   border: none;
 }

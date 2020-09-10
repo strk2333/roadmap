@@ -308,3 +308,151 @@ public class XxXxxJobHandler extends IJobHandler {
     }
 }
 ```
+
+
+
+
+
+## 注解
+
+### @Autowired
+
+1. 修饰变量
+2. 修饰构造方法（单一参数，多参数）
+3. 修饰 set 方法
+4. 修饰普通方法
+
+
+
+组件可为空 @Autowired(required=false)
+
+
+
+
+
+### @Component
+
+加入容器控制
+
+
+
+自定义id @Component("userService")
+
+
+
+其他语义定制注解
+
+- @Controller
+- @Service
+- @Repository (dao)
+
+
+
+### @Configuration
+
+标记为配置文件
+
+
+
+### @ComponentScan
+
+扫描所在包下的所有类
+
+指定扫描范围
+
+- @ComponentScan("com.xxx.xxx")
+- @ComponentScan(basePackages = {"com.xxx.xxx", "com.xxx.yyy"})
+- @ComponentScan(basePackages = {UserController.class, UserService.class, UserDao.class})
+
+
+
+### @RunWith(SpringJUnit4ClassRunner.class)
+
+
+
+
+
+### @ContextConfiguration
+
+- 注解配置 @ContextConfiguration(classes=AppConfig.class)
+- XML配置 @ContextConfiguration("classpath:applicationContext.xml")
+
+
+
+### @Test
+
+
+
+### @Qualifier @Primary
+
+- 处理装配歧义
+  - @Primary
+  - 使用 @Qualifier
+    - @Qualifier("")
+    - @Component("name")
+    - 使用默认首字母小写的变量名
+    - 装配使用 @Resource(name="") 或 @Autowired @Qualifier("")
+
+
+
+### @Resource
+
+@Autowired @Qualifier("userService") = @Resource(name="userService")
+
+Autowired, Qualifier 是 Spring 标准，Resource 是 javax.annotation.Resource, JDK的标准
+
+
+
+
+
+
+
+
+
+### @Bean
+
+```
+// 放在 @Configuration 里
+@Bean
+public UserService userService(@Qulifier("name") UserDao userDao) {
+	// UserDao userDao = userDao(); // 拦截，返回已存在对象
+	return new UserService(userDao); // 构造方法注入，也可以用setter, 甚至任意方法注入
+}
+```
+
+
+
+装配第三方类
+
+消除歧义方法同上
+
+
+
+## XML配置
+
+
+
+resources 下新增 applicationContext.xml
+
+```xml
+<beans xmlns> <!-- 相当于 @Configuration -->
+  <context:component-scan base-package="com.xxx.xxx" />
+  <context:component-scan base-package="com.xxx.xxx" />
+  <bean class="com.xxx.xxx.Xxx"></bean>
+</beans>
+```
+
+
+
+```java
+@ContextConfiguration("classpath:applicationContext.xml") // 注解
+
+... = new ClassPathXmlApplicationContext("applicationContext.xml"); // 
+Xxx xxx = context.getBean(Xxx.class);
+
+```
+
+
+
+
+
