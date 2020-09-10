@@ -435,10 +435,105 @@ public UserService userService(@Qulifier("name") UserDao userDao) {
 resources 下新增 applicationContext.xml
 
 ```xml
-<beans xmlns> <!-- 相当于 @Configuration -->
-  <context:component-scan base-package="com.xxx.xxx" />
-  <context:component-scan base-package="com.xxx.xxx" />
-  <bean class="com.xxx.xxx.Xxx"></bean>
+<!-- 相当于 @Configuration, xmlns:c c 名称空间 -->
+<beans 
+       xmlns="https://www.springframework.org/schema/beans"
+       xmlns:c="https://www.springframework.org/schema/c"
+       xmlns:p="https://www.springframework.org/schema/p"
+       xmlns:util="https://www.springframework.org/schema/util"
+       xsi:schemaLocation="https://www.springframework.org/schema/beans
+                           https://www.springframework.org/schema/spring-beans
+                           https://www.springframework.org/schema/util
+                           https://www.springframework.org/schema/spring-util.xsd">
+  <!-- 组件扫描范围 -->
+  <context:component-scan base-package="com.nogi.dao" />
+  <context:component-scan base-package="com.nogi.service" />
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- bean -->
+  <!-- name 多个别名, 没有name，id，自动生成类似 com.nogi.service#0 的id -->
+  <bean id="nanase" name="xxx yyy,zzz;ttt" class="com.nogi.entify.Member" />
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- 依赖注入1 -->
+  <!-- 构造函数 -->
+  <bean id="jingu2017" class="com.nogi.entity.Live">
+    <constructor-arg ref="nanase" />
+    <constructor-arg (name="location")
+                     (index="0")
+                     (type="java.lang.String")
+                     value="Tokyo Jingu" />
+    <constructor-arg value="2017-08-22" />
+    <constructor-arg name="memberList">
+      <list> <!-- list / set(LinkedHashSet) / array -->
+        <value>nanase</value> <!-- 基本类型 -->
+        <value>renka</value>
+        <value>yoda</value>
+        <value>ten</value>
+        <value>momoko</value>
+        
+        <ref bean="nanase" /> <!-- 实例注入 -->
+        <ref bean="shiraishi" />
+      </list>
+      <map>
+      	<entry key="01" value="ayame" />
+      	<entry key="02" value="kaki" />
+      	<entry key="03" value-ref="saku" />
+      </map>
+    </constructor-arg>
+  </bean>
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- 依赖注入2 -->
+  <!-- c名称空间 xxx 为构造函数参数名，可以用 _0 表示第一个参数 -->
+  <!-- c名称空间，无法进行集合装配 -->
+  <bean id="nigemizu" 
+        class="com.nogi.entity.Song" 
+        c:_0-ref="yoda"
+        c:_1-ref="momoko"
+        c:-ref="nanase"
+        c:fullName="nigemizu" /> <!-- 加 -ref 为注入实例 -->
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- 属性注入1 -->
+  <!-- property 注入，需要类中属性有 set 方法 -->
+  <bean id="route246" class="com.nogi.entity.Song">
+    <property name="title" value="Route246" /> <!-- setTitle v setTitle1 x -->
+    <property name="center" ref="asuka" />
+    <property name="memberList">
+      <array>
+      	<value ref="asuka" />
+      	<value ref="ikuta" />
+      	<value ref="miona" />
+      	<value ref="renka" />
+      </array>
+    </property>
+  </bean>
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- util名称空间, 支持list, map, set... -->
+  <util-list id="aozoraMemberList">
+    <ref beans="ikuta" />
+    <ref beans="ikoma" />
+    <ref beans="minami" />
+  </util-list>
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- 属性注入2 -->
+  <!-- p名称空间 -->
+  <bean id="aozora" 
+        class="com.nogi.entity.Song" 
+        p:fullName="nandomenoaozora" 
+        p:center-ref="ikuta"
+        p:memberList-ref="aozoraMemberList">
+  </bean>
+  
 </beans>
 ```
 
@@ -447,12 +542,44 @@ resources 下新增 applicationContext.xml
 ```java
 @ContextConfiguration("classpath:applicationContext.xml") // 注解
 
-... = new ClassPathXmlApplicationContext("applicationContext.xml"); // 
+... = new ClassPathXmlApplicationContext("applicationContext.xml"); // XML
 Xxx xxx = context.getBean(Xxx.class);
+// context.getBean("xxx.xxx.xxx.Xxx#0");
+// context.getBean("xxx01");
+
 
 ```
 
 
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>4.3.13.RELEASE</version>
+  </dependency>
+  
+  <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>4.3.13.RELEASE</version>
+  </dependency>
+  
+  <!-- 还需要导入 log4j.properties -->
+  <dependency>
+    <groupId>log4j</groupId>
+    <artifactId>log4j</artifactId>
+    <version>1.2.17</version>
+  </dependency>
+  
+  <dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.12</version>
+  </dependency>
+</dependencies>
+```
 
 
 
