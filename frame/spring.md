@@ -428,9 +428,45 @@ public UserService userService(@Qulifier("name") UserDao userDao) {
 
 
 
+### @Scope
+
+配置 bean 作用域
+
+1. 在 bean 声明类上配置
+2. 在 bean 声明变量上配置
+
+```
+@Scope("prototype")
+@Scope(scopeName="prototype")
+@Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+```
+
+
+
+### @Lazy
+
+延迟加载，只和 Scope 为 Singleton 的匹配
+
+1. 在 bean 声明类上配置
+2. 在 bean 声明变量上配置
+
+
+
+### @PostConstruct @PreDestory
+
+初始化方法，销毁方法
+
+
+
+
+
+
+
+注：没有关于工厂模式的 Spring 注释
+
+
+
 ## XML配置
-
-
 
 resources 下新增 applicationContext.xml
 
@@ -534,6 +570,43 @@ resources 下新增 applicationContext.xml
         p:memberList-ref="aozoraMemberList">
   </bean>
   
+  
+  <!--------------------------------------------------------------->
+  <!-- bean 作用域 -->
+  <!-- singleton 获取实例时，返回单实例。初始化创建实例 -->
+  <!-- prototype 获取实例时，创建新实例。初始化不创建实例 -->
+  <bean id="staff" class="com.nogi.entity.Staff" scope="prototype" />
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- 延迟加载 -->
+  <!-- 获取实例时，创建实例 -->
+  <bean id="cameraman" class="com.nogi.entity.CameraMan" lazy-init="true" />
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- 初始化方法，销毁方法 -->
+  <bean id="soundman" 
+        class="com.nogi.entity.SoundMan" 
+        init-method="init"
+        destroy-method="destory" />
+  
+  
+  <!--------------------------------------------------------------->
+  <!-- 工厂方法 -->
+  <!-- 静态工厂方法 -->
+  <bean id="schedule1"
+        class="com.nogi.entity.Manager"
+        factory-method="createSchedule" />
+  
+  <bean id="manager2"
+        class="com.nogi.entity.Manager" />
+  
+  <!-- 实例工厂方法 -->
+  <bean id="schedule2"
+        factory-bean="manager2"
+        factory-method="createSchedule" />
+  
 </beans>
 ```
 
@@ -546,7 +619,6 @@ resources 下新增 applicationContext.xml
 Xxx xxx = context.getBean(Xxx.class);
 // context.getBean("xxx.xxx.xxx.Xxx#0");
 // context.getBean("xxx01");
-
 
 ```
 
