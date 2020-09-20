@@ -68,3 +68,45 @@
 - 特色
 
 - 注意点
+
+
+
+
+
+
+
+
+
+
+
+## 容易忽视的 ES6
+
+### 函数、数组和对象
+
+#### 函数传值`undefined`
+
+函数有默认值的参数在参数个数中间，并且后面的参数不实用默认值，这时要使用默认值的参数可以传入`undefined`。
+
+```js
+function detanx(x = null, y = 6) {
+  console.log(x, y);
+}
+detanx(undefined, null); // null null
+```
+
+
+
+#### 函数 length
+
+指定了默认值以后，函数的`length`属性，将返回**没有指定默认值的参数个数**，即该函数需要的**最少参数个数**。指定了默认值后，`length`属性将失真。
+
+```
+(function (a) {}).length // 1
+(function (a = 5) {}).length // 0
+(function (a, b, c = 5) {}).length // 2
+```
+
+
+
+
+
