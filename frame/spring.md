@@ -1,10 +1,10 @@
 # Spring
 
-
+Spring & SpringBoot
 
 ## HelloWorld
 
-
+### SpringBoot 公司版本
 
 开始页面
 
@@ -308,6 +308,150 @@ public class XxXxxJobHandler extends IJobHandler {
     }
 }
 ```
+
+
+
+
+
+
+
+## 概述
+
+Spring是一个软件设计层面的，企业级开发框架。优势在于可以将应用程序分层，开发者可以自主选择组件。
+
+- MVC：Struts2，Spring MVC
+- ORMapping：Hibernate，MyBatis，Spring Data
+
+
+
+企业级项目特点
+
+- 大规模：用户数量多，数据规模大，功能模块多
+- 性能和安全要求高
+- 业务复杂
+- 灵活多变
+
+
+
+![image-20200917101549640](/Users/strk2333/Documents/Workspace/Doc/roadmap/frame/spring_assets/image-20200917101549640.png)
+
+
+
+优点
+
+- 低侵入式设计
+- 独立于各种应用服务器
+- 依赖注入特性将组件关系透明化，降低了耦合度
+- 面向切面编程特性允许将通用任务进行集中式处理
+- 与第三方框架的良好整合
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## IoC DI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## AOP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
