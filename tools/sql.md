@@ -605,8 +605,9 @@ mysql -u root -p
 
 2.添加新用户（允许所有ip访问）
 
-```
-create user ``'test'``@``'*'` `identified by ``'123456'``;（test:用户名，*：所有ip地址，123456：密码）
+```sql
+create user 'test'@'*' identified by '123456';
+#（test:用户名，*：所有ip地址，123456：密码）
 ```
 
 3.创建数据库
@@ -615,12 +616,16 @@ create database testdb;
 
 4.为新用户分配权限
 
-grant all privileges on `testdb`.* to `'test'``@``'%'` `identified by ``'123456'``; `
+```sql
+grant all privileges on testdb.* to 'test'@'%' identified by '123456';
+```
+
+
 
 5.刷新权限
 
-```
-flush` `privileges;
+```sql
+flush privileges;
 ```
 
 

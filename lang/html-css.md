@@ -231,7 +231,7 @@ body {
 
 **2.** 类选择器， 如 .colorRed
 
-  属性选择器， 如 [type='radio]
+  属性选择器， 如 [type=radio]
 
   伪类，如 :hover
 
@@ -283,6 +283,13 @@ body {
 
 
 
+隐藏滚动条
+
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
 
 
 
@@ -293,3 +300,42 @@ body {
 - use vw for responsive site, font may be too small when use in font-size [use px]
 - img has size 0 when src is null. [display: block]
 
+
+
+zindex 不起作用
+
+- -1
+
+**失效的情况:**
+
+1、父标签 position属性为relative；
+
+2、问题标签无position属性（不包括static）；
+
+3、问题标签含有浮动(float)属性。
+
+4、问题标签的祖先标签的z-index值比较小
+
+
+
+解决方法:
+
+第一种: position:relative改为position:absolute；
+
+第二种:浮动元素添加position属性（如relative，absolute等）；
+
+第三种:去除浮动。
+
+第四种:提高父标签的z-index值
+
+
+
+
+
+
+
+![在这里插入图片描述](/Users/strk2333/Documents/Workspace/Doc/roadmap/lang/html-css_assets/70.jpeg)
+
+
+
+pattern: /^[\u2E80-\u9FFF()（）]+$/,
