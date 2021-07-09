@@ -239,6 +239,18 @@ Java 方法执行的内存模型，Java 栈中存放的是多个栈帧，每个�
 
 
 
+jvm
+
+https://mp.weixin.qq.com/s?__biz=MzI4NDY5Mjc1Mg==&mid=2247483934&idx=1&sn=41c46eceb2add54b7cde9eeb01412a90&chksm=ebf6da61dc81537721d36aadb5d20613b0449762842f9128753e716ce5fefe2b659d8654c4e8&scene=21#wechat_redirect
+
+
+
+https://zhuanlan.zhihu.com/p/34426768
+
+
+
+https://blog.csdn.net/qq_41701956/article/details/81664921
+
 
 
 ## GC
@@ -552,3 +564,148 @@ HR问题
 - 你如何看待加班这件事
 - 你觉得自己有哪些优势, 生活中别人是如何评价你的, 自己有哪些优点和缺点
 - 你的期望薪资是多少, 最低能接受多少
+
+
+
+
+
+## 问题
+
+
+移位问题
+跳过整数极值
+
+
+
+
+
+## 未整理
+
+```
+## generate continuational array
+IntStream.range
+
+## Thread, Runnable, Callable
+Future(Runnable) -> Callable
+Future(Callable)
+RunnableFuture 的实现类 RunnableTask 覆写了 Runnable 的 run 方法，调用了 c.call
+
+## wait, notify, notifyAll
+notify 唤醒一个等待中的线程
+notifyAll 唤醒一个等待中的线程
+
+## synchronized
+可以修饰类，方法，Object
+修饰类或静态方法时，锁的是所有该类的实例
+修饰 Object 时，锁的是当前实例
+
+## interrupt
+t.interrupt(); // 开启中断
+Thread.currentThread().isInterrupted(); // 返回中断标志，不会重置中断标志
+Thread.currentThread().interrupt(); // 在捕捉到 InterruptedException 异常的时候会自动的中断标志置为 false
+Thread.interrupted(); // 返回中断标志，同时会重置中断标志
+
+i / 3 * 2 + i % 3
+
+## Semaphore
+acquire
+release
+
+
+## JVM
+### 类的加载
+加载过程
+加载 - 验证 - 准备 - 解析 - 初始化
+
+使用 - 卸载
+
+连接
+验证 - 准备 - 解析
+
+#### 加载
+1. 通过类的全限定名获取二进制字节流
+2. 将该字节流代表的静态存储结构转化为方法区的运行时数据结构
+3. 在Java堆中生成 java.lang.class 对象，作为访问方法区对应数据的入口
+
+#### 验证
+文件格式验证：验证字节流是否符合Class文件格式的规范；
+例如：是否以 0xCAFEBABE开头、
+主次版本号是否在当前虚拟机的处理范围之内、
+常量池中的常量是否有不被支持的类型。
+
+元数据验证：对字节码描述的信息进行语义分析（注意：对比javac编译阶段的语义分析），
+以保证其描述的信息符合Java语言规范的要求；
+例如：这个类是否有父类，除了 java.lang.Object之外。
+
+字节码验证：通过数据流和控制流分析，确定程序语义是合法的、符合逻辑的。
+
+符号引用验证：确保解析动作能正确执行。
+
+验证阶段是非常重要的，但不是必须的，它对程序运行期没有影响，如果所引用的类经过反复验证，
+那么可以考虑采用 -Xverifynone参数来关闭大部分的类验证措施，以缩短虚拟机类加载的时间。
+
+#### 准备
+为类的静态变量在方法区分配内存，并将其初始化为默认值。
+这里所设置的初始值通常情况下是数据类型默认的零值（如0、0L、null、false等），
+而不是被在Java代码中被显式地赋予的值。
+如果同时被final和static修饰，那么在准备阶段变量value就会被初始化为ConstValue属性所指定的值。
+编译时Javac将会为value生成ConstantValue属性，在准备阶段虚拟机就会根据 ConstantValue的设置将value赋值为3
+
+#### 解析
+解析：把类中的符号引用转换为直接引用
+
+#### 初始化
+初始化，为类的静态变量赋予正确的初始值，JVM负责对类进行初始化，主要对类变量进行初始化。
+在Java中对类变量进行初始值设定有两种方式：
+①声明类变量是指定初始值
+②使用静态代码块为类变量指定初始值
+
+JVM初始化步骤
+1、假如这个类还没有被加载和连接，则程序先加载并连接该类
+2、假如该类的直接父类还没有被初始化，则先初始化其直接父类
+3、假如类中有初始化语句，则系统依次执行这些初始化语句
+
+类初始化时机：只有当对类的主动使用的时候才会导致类的初始化，类的主动使用包括以下六种：
+1. 创建类的实例，也就是new的方式
+2. 访问某个类或接口的静态变量，或者对该静态变量赋值
+3. 调用类的静态方法
+4. 反射（如 Class.forName(“com.shengsiyuan.Test”)）
+5. 初始化某个类的子类，则其父类也会被初始化
+6. Java虚拟机启动时被标明为启动类的类（ JavaTest），直接使用 java.exe命令来运行某个主类
+
+#### 结束生命周期
+在如下几种情况下，Java虚拟机将结束生命周期
+1. 执行了 System.exit()方法
+2. 程序正常执行结束
+3. 程序在执行过程中遇到了异常或错误而异常终止
+4. 由于操作系统出现错误而导致Java虚拟机进程终止
+
+### 类加载器
+启动类加载器： BootstrapClassLoader，负责加载存放在 JDK\jre\lib(JDK代表JDK的安装目录，下同)下，或被 -Xbootclasspath参数指定的路径中的，并且能被虚拟机识别的类库（如rt.jar，所有的java.开头的类均被 BootstrapClassLoader加载）。启动类加载器是无法被Java程序直接引用的。
+扩展类加载器： ExtensionClassLoader，该加载器由 sun.misc.Launcher$ExtClassLoader实现，它负责加载 JDK\jre\lib\ext目录中，或者由 java.ext.dirs系统变量指定的路径中的所有类库（如javax.开头的类），开发者可以直接使用扩展类加载器。
+应用程序类加载器：ApplicationClassLoader，该类加载器由 sun.misc.Launcher$AppClassLoader来实现，它负责加载用户类路径（ClassPath）所指定的类，开发者可以直接使用该类加载器，如果应用程序中没有自定义过自己的类加载器，一般情况下这个就是程序中默认的类加载器。
+
+自己的ClassLoader可以做到如下几点：
+1、在执行非置信代码之前，自动验证数字签名。
+2、动态地创建符合用户特定需要的定制化构建类。
+3、从特定的场所取得java class，例如数据库中和网络中。
+
+JVM类加载机制
+全盘负责，当一个类加载器负责加载某个Class时，该Class所依赖的和引用的其他Class也将由该类加载器负责载入，除非显示使用另外一个类加载器来载入
+父类委托，先让父类加载器试图加载该类，只有在父类加载器无法加载该类时才尝试从自己的类路径中加载该类
+缓存机制，缓存机制将会保证所有加载过的Class都会被缓存，当程序中需要使用某个Class时，类加载器先从缓存区寻找该Class，只有缓存区不存在，系统才会读取该类对应的二进制数据，并将其转换成Class对象，存入缓存区。这就是为什么修改了Class后，必须重启JVM，程序的修改才会生效
+
+
+## 类的加载
+类加载有三种方式：
+
+1、命令行启动应用时候由JVM初始化加载
+
+2、通过Class.forName()方法动态加载
+
+3、通过ClassLoader.loadClass()方法动态加载
+```
+
+
+
+netty nio
