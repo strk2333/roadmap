@@ -110,3 +110,18 @@ detanx(undefined, null); // null null
 
 
 
+
+
+## 小技巧
+
+
+
+### 基础类型
+
+
+
+#### 类型转换
+
+##### String2Number
+
+- '5277' * 1 = 5277

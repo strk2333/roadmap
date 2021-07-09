@@ -100,7 +100,30 @@ CSS
 
 
 
+## 优化/兼容
 
+
+
+sortablejs 在火狐浏览器会有兼容问题
+
+- 拖拽打开新页面
+
+```js
+// 注册拖拽事件，禁止冒泡
+document.body.ondrop = function (event) {
+	event.preventDefault();
+	event.stopPropagation();
+}
+
+```
+
+- 低版本火狐输入框、文本域无法输入内容（没遇到过这个问题，只是记录一下）
+
+```js
+$("input,textarea").click(function() {
+     $(this).focus();
+});
+```
 
 
 

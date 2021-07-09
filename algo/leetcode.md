@@ -91,10 +91,25 @@ stoi(string)
 
 #### vector
 
+
+
+##### push_back & emplace_back
+
+push_back() 向容器尾部添加元素时，首先会创建这个元素，然后再将这个元素拷贝或者移动到容器中（如果是拷贝的话，事后会自行销毁先前创建的这个元素）；
+
+emplace_back() 在实现时，则是直接在容器尾部创建这个元素，省去了拷贝或移动元素的过程。
+
+由于 emplace_back() 是 C++ 11 标准新增加的，如果程序要兼顾之前的版本，还是应该使用 push_back()。
+
+
+
+##### 操作
+
 ```c++
 vector<int> res; // 初始化
 
 res.push_back(1); // 插入到尾部
+emplace_back
 
 res.insert(res.begin(),cur->val); // 插入到头部
 
@@ -131,6 +146,31 @@ q.size(); // 访问队中的元素个数
 
 
 #### map
+
+
+
+```
+unordered_map
+
+emplace_back()
+
+erase(start, end)
+
+
+unordered_map<string, int> cnt;
+for (auto& word: words) {
+++cnt[word];
+}
+for (auto& [key, value] : cnt) {
+rec.emplace_back(key);
+}
+sort(rec.begin(), rec.end(), [&](const string& a, const string& b) -> bool {
+return cnt[a] == cnt[b] ? a < b : cnt[a] > cnt[b];
+});
+rec.erase(rec.begin() + k, rec.end());
+return rec;
+
+```
 
 
 
@@ -192,4 +232,96 @@ unordered_map<int, int> mp;
 
 
 #### 位运算
+
+
+
+
+
+## TOOLS
+
+    template <typename T>
+    void printFormatedElement(T t) {
+        switch(t) {
+            case INT_MIN: cout << "INT_MIN"; break; return;
+            case INT_MAX: cout << "INT_MAX"; break; return;
+            default: cout << t;
+        }
+    }
+    template <typename T>
+    void printElements(T t) {
+        printFormatedElement(t);
+        cout << endl;
+    }
+    template <typename T, typename... TS>
+    void printElements(T arg, TS... args)
+    {
+        printFormatedElement(arg);
+        cout << ", ";
+        printElements(args...);
+    }
+
+
+
+## QUESTIONS
+
+
+
+```
+带权二叉树染色：
+
+dp dfs
+
+每个节点都维护一个dp[i + 1]
+
+dp[i + 1] 维护当前节点下，最大染色节点数为 i 的最大染色值
+
+1. 当前节点不染色
+   1. 返回左右最大染色之和 （即 dp[0]）
+2. 当前节点染色
+   1. dp[1] 当前节点染色，左右不染色
+   2. dp[2 ~ i + 1] 双重循环填充 dp 数组。循环 dp 长度，循环左节点染色个数。
+```
+
+
+
+```
+背包问题
+给你一个可装载重量为 `W` 的背包和 `N` 个物品，每个物品有重量和价值两个属性。其中第 `i` 个物品的重量为 `wt[i]`，价值为 `val[i]`，现在让你用这个背包装物品，最多能装的价值是多少？
+// i 物品数量
+// j 背包物品总量
+dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - nums[i - 1]]);
+// 416 分割等和子集
+sum % 2 == 1 ? return false : sum /= 2;
+vector<vector<int>> dp(n + 1, vector<int>(sum + 1, 0))
+for (int i = 0; i < nums.size(); i++) {
+	for (int j = 0; j < sum; j++) {
+        if (j - nums[i - 1] > 0) {
+			// 还有放下物品的空间
+            // 上一次就已经放了 j 单位的物品
+            // 或者这次正好能放 j 单位的物品
+			dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - nums[i - 1]]);
+        } else {
+            dp[i][j] = dp[i - 1][j];
+        }
+	}
+}
+return dp[nums.size()][sum] != 0;
+
+bool canPartition(vector<int>& nums) {
+    int sum = 0, n = nums.size();
+    for (int num : nums) sum += num;
+    if (sum % 2 != 0) return false;
+    sum = sum / 2;
+    vector<bool> dp(sum + 1, false);
+    // base case
+    dp[0] = true;
+
+    for (int i = 0; i < n; i++) 
+        for (int j = sum; j >= 0; j--) 
+            if (j - nums[i] >= 0)
+                dp[j] = dp[j] || dp[j - nums[i]];
+
+    return dp[sum];
+}
+```
 
