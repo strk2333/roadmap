@@ -416,6 +416,120 @@ yarn global add xxx
 
 
 
+
+
+## HOOKS
+
+useState
+
+const [state, setState] = useState(initialState);
+
+const [state, setState] = useState(() => { return () => {}; }));
+
+
+
+useEffect
+
+useEffect(() => {}, [dep]);
+
+第二个参数不传时，会在 update 时调用
+
+
+
+useContext
+
+const context = useContext(MyContext);
+
+
+
+useReducer
+
+const [state, dispatch] = useReducer(reducer, initialArg, init);
+
+
+
+与 useState 的区别
+
+- 当 state 状态值结构比较复杂时，使用 useReducer 更有优势。
+- 使用 useState 获取的 setState 方法更新数据时是异步的；而使用 useReducer 获取的 dispatch 方法更新数据是同步的。
+
+
+
+useCallback
+
+const memoizedCallback = useCallback(() => {}, [dep]);
+
+返回值 memoizedCallback 是一个 memoized 回调
+
+```
+export default function WithMemo() {
+    const [count, setCount] = useState(1);
+    const [val, setValue] = useState('');
+    const [val2, setValue2] = useState('');
+    const expensive = useMemo(() => {
+        console.log('compute');
+        let sum = 0;
+        for (let i = 0; i < count * 100; i++) {
+            sum += i;
+        }
+        return sum;
+    }, [val2]);
+ 
+    return <div>
+        <h4>{count}-{expensive}</h4>
+        {val}
+        <div>
+            <button onClick={() => setCount(count + 1)}>+c1<tton>
+            <input value={val} onChange={event => setValue(event.target.value)}/>
+        </div>
+    </div>;
+}
+```
+
+
+
+useMemo
+
+const memoizedValue = useMemo(() => {}, [dep]);
+
+
+
+
+
+useRef
+
+const refContainer = useRef(initialValue);
+
+useRef 返回一个可变的 ref 对象，其 .current 属性被初始化为传递的参数（initialValue）。返回的对象将存留在整个组件的生命周期中。
+
+从本质上讲，useRef就像一个“盒子”，可以在其.current财产中保持一个可变的价值。
+useRef() Hooks 不仅适用于 DOM 引用。 “ref” 对象是一个通用容器，其 current 属性是可变的，可以保存任何值（可以是元素、对象、基本类型、甚至函数），类似于类上的实例属性。
+
+
+
+useLayoutEffect
+
+useLayoutEffect(() => { doSomething });
+
+与 useEffect Hooks 类似，都是执行副作用操作。但是它是在所有 DOM 更新完成后触发。可以用来执行一些与布局相关的副作用，比如获取 DOM 元素宽高，窗口滚动距离等等。
+
+进行副作用操作时尽量优先选择 useEffect，以免阻止视觉更新。与 DOM 无关的副作用操作请使用 useEffect。
+
+
+
+规范
+
+不要从常规 JavaScript 函数调用 Hooks;
+不要在循环，条件或嵌套函数中调用 Hooks;
+必须在组件的顶层调用 Hooks;
+可以从 React 功能组件调用 Hooks;
+可以从自定义 Hooks 中调用 Hooks;
+自定义 Hooks 必须使用 use 开头，这是一种约定;
+
+
+
+
+
 ## 性能测试优化
 
 
@@ -507,3 +621,4 @@ react改端口
 yarn start --port 8082
 
  adb -s emulator-5554 reverse tcp:8082 tcp:8082
+
