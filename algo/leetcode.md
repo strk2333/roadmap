@@ -235,6 +235,13 @@ unordered_map<int, int> mp;
 
 
 
+#### 其他
+
+```
+// 累加
+int sum = accumulate(vec.begin() , vec.end() , 0); // 开始位置，结束位置（不包含），初始值
+```
+
 
 
 ## TOOLS

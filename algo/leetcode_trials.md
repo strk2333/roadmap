@@ -63,3 +63,49 @@ DFS 使用栈
 要必赢需要把第一步放在能堵死路线的位置。这个位置只有三个，根，左，右。根的不需要计算，可以根据 n 和左右算出。
 ```
 
+
+
+
+
+```
+背包问题
+给你一个可装载重量为 `W` 的背包和 `N` 个物品，每个物品有重量和价值两个属性。其中第 `i` 个物品的重量为 `wt[i]`，价值为 `val[i]`，现在让你用这个背包装物品，最多能装的价值是多少？
+// i 物品数量
+// j 背包物品总量
+dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - nums[i - 1]]);
+// 416 分割等和子集
+sum % 2 == 1 ? return false : sum /= 2;
+vector<vector<int>> dp(n + 1, vector<int>(sum + 1, 0))
+for (int i = 0; i < nums.size(); i++) {
+	for (int j = 0; j < sum; j++) {
+        if (j - nums[i - 1] > 0) {
+			// 还有放下物品的空间
+            // 上一次就已经放了 j 单位的物品
+            // 或者这次正好能放 j 单位的物品
+			dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - nums[i - 1]]);
+        } else {
+            dp[i][j] = dp[i - 1][j];
+        }
+	}
+}
+return dp[nums.size()][sum] != 0;
+
+bool canPartition(vector<int>& nums) {
+    int sum = 0, n = nums.size();
+    for (int num : nums) sum += num;
+    if (sum % 2 != 0) return false;
+    sum = sum / 2;
+    vector<bool> dp(sum + 1, false);
+    // base case
+    dp[0] = true;
+
+    for (int i = 0; i < n; i++) 
+        for (int j = sum; j >= 0; j--) 
+            if (j - nums[i] >= 0)
+                dp[j] = dp[j] || dp[j - nums[i]];
+
+    return dp[sum];
+}
+
+```
+
